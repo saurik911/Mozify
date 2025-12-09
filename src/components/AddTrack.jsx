@@ -62,12 +62,12 @@ export default function AddTrack({ onAddTrack }) {
     };
 
     return (
-        <div className="glass-card p-6 mb-8">
-            <h2 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+        <div className="glass-card p-6 mb-8 animate-fade-in-up">
+            <h2 className="text-xl font-black mb-6 text-white">
                 Add New Track
             </h2>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
                 <div
                     onDrop={handleDrop}
                     onDragOver={handleDragOver}
@@ -82,21 +82,21 @@ export default function AddTrack({ onAddTrack }) {
                         disabled={loading}
                     />
                     {loading && (
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                            <div className="animate-spin rounded-full h-5 w-5 border-2 border-primary border-t-transparent"></div>
+                        <div className="absolute right-5 top-1/2 -translate-y-1/2">
+                            <div className="animate-spin rounded-full h-5 w-5 border-2 border-spotify-green border-t-transparent"></div>
                         </div>
                     )}
                 </div>
 
-                <div className="flex gap-4 flex-wrap">
+                <div className="flex gap-2 flex-wrap">
                     {categories.map((cat) => (
                         <button
                             key={cat}
                             type="button"
                             onClick={() => setCategory(cat)}
-                            className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${category === cat
-                                    ? 'bg-gradient-to-r from-primary to-secondary text-white shadow-lg shadow-primary/50'
-                                    : 'bg-white/10 text-white/70 hover:bg-white/20'
+                            className={`px-5 py-2.5 rounded-full font-bold text-xs transition-all duration-200 ${category === cat
+                                    ? 'bg-spotify-green text-black shadow-lg scale-105'
+                                    : 'bg-spotify-gray text-white hover:bg-spotify-hover hover:scale-105'
                                 }`}
                         >
                             {cat}
@@ -105,7 +105,7 @@ export default function AddTrack({ onAddTrack }) {
                 </div>
 
                 {error && (
-                    <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-3 text-red-200">
+                    <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4 text-red-400 text-sm font-medium animate-scale-in">
                         {error}
                     </div>
                 )}
@@ -113,7 +113,7 @@ export default function AddTrack({ onAddTrack }) {
                 <button
                     type="submit"
                     disabled={loading}
-                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                 >
                     {loading ? 'Adding Track...' : 'Add Track'}
                 </button>
